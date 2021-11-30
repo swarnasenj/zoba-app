@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:zoba_app/style/color.dart';
 
 class DrawerPage extends StatefulWidget {
-   final func;
+  final func;
   DrawerPage({this.func});
 
   @override
@@ -15,6 +16,7 @@ class _DrawerPageState extends State<DrawerPage> {
     return Drawer(
       child: SafeArea(
           child: ListView(
+        padding: EdgeInsets.zero,
         children: [
           Stack(
             children: [
@@ -23,14 +25,18 @@ class _DrawerPageState extends State<DrawerPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Container(
-                      height: 60,
-                      width: 60,
+                    const UserAccountsDrawerHeader(
+                      currentAccountPicture: CircleAvatar(
+                        backgroundImage: AssetImage('assets/images/men.jpg'),
+                      ),
+                      accountName: Text(
+                        'ADAM TAWFIK',
+                        style: TextStyle(fontSize: 20, color: Colors.black87),
+                      ),
+                      accountEmail: Text('jane.doe@gmail.com',
+                      style: TextStyle(fontSize: 15, color: Colors.grey),),
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(100),
-                        image: const DecorationImage(
-                            image: AssetImage('assets/images/men.jpg'),
-                            fit: BoxFit.cover),
+                        color: KColor.K_app,
                       ),
                     ),
                   ],

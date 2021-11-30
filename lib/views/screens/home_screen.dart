@@ -28,7 +28,8 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       backgroundColor: KColor.K_background,
       appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(150.0),
+        preferredSize: const Size.fromHeight(50.0),
+        // ignore: sort_child_properties_last
         child: SafeArea(
           child: Container(
             width: double.infinity,
@@ -36,12 +37,12 @@ class _HomeScreenState extends State<HomeScreen> {
             margin: const EdgeInsets.only(left: 10, right: 10),
             child: AppBar(
               shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(5),
-                    topRight: Radius.circular(5),
-                    bottomLeft: Radius.circular(5),
-                    bottomRight: Radius.circular(5)),
-              ),
+                  // borderRadius: BorderRadius.only(
+                  //     topLeft: Radius.circular(4),
+                  //     topRight: Radius.circular(4),
+                  //     bottomLeft: Radius.circular(5),
+                  //     bottomRight: Radius.circular(5)),
+                  ),
               elevation: 0,
               backgroundColor: KColor.K_app,
               title: Container(
@@ -68,12 +69,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ),
                     ),
-                    
-                    
                   ],
                 ),
               ),
-              
               actions: [
                 Container(
                   margin: const EdgeInsets.only(right: 10),
@@ -83,10 +81,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
               ],
-              
-              
             ),
-            
           ),
         ),
       ),
@@ -98,11 +93,36 @@ class _HomeScreenState extends State<HomeScreen> {
         },
       ),
       body: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
         child: Container(
+          margin: const EdgeInsets.only(top: 0),
           child: Column(
             children: [
               Container(
-                margin: const EdgeInsets.only(left: 15, right: 15, top: 15),
+                height: 70,
+                color: KColor.K_app,
+                margin: const EdgeInsets.only(left: 10, right: 10),
+                padding: const EdgeInsets.only(left: 20, right: 20),
+                child: Container(
+                  decoration: BoxDecoration(
+                      color: KColor.K_app,
+                      border: Border.all(
+                        color: KColor.K_app.withOpacity(0.50),
+                      )),
+                  child: const TextField(
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                      prefixIcon: Icon(Icons.search, color: Colors.grey),
+                      hintText: 'Search here...',
+                      contentPadding: EdgeInsets.all(15),
+                      fillColor: Colors.white,
+                      filled: true,
+                    ),
+                  ),
+                ),
+              ),
+              Container(
+                margin: const EdgeInsets.only(left: 15, right: 15, top: 10),
                 height: MediaQuery.of(context).size.height * .2,
                 width: double.infinity,
                 decoration: BoxDecoration(
@@ -113,7 +133,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: [
                     Container(
                       padding:
-                          const EdgeInsets.only(right: 40, top: 5, left: 10),
+                          const EdgeInsets.only(right: 50, top: 5, left: 10),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -131,7 +151,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           const Text(
                             'FOR EVERY THING',
                             style: TextStyle(
-                              color: Color(0xfffe5c45),
+                              color: Colors.black54,
                               fontSize: 18,
                             ),
                           ),
@@ -157,30 +177,100 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               DefaultTabController(
-                  length: 4,
-                  child: Column(
-                    children: [
-                      Container(
-                        child: const TabBar(
-                            labelStyle: TextStyle(
-                              fontWeight: FontWeight.w700,
+                length: 5,
+                child: Column(children: [
+                  Container(
+                    child: const TabBar(
+                        labelStyle: TextStyle(
+                            fontWeight: FontWeight.w700, fontSize: 15),
+                        labelColor: Color(0xfffe5c45),
+                        isScrollable: true,
+                        indicatorColor: Colors.transparent,
+                        unselectedLabelColor: Color(0xffe6e5ee),
+                        tabs: [
+                          Tab(text: 'T-Shirts'),
+                          Tab(text: 'Jeans'),
+                          Tab(text: 'Blazers'),
+                          Tab(text: 'Sneakers'),
+                          Tab(text: 'Jeans'),
+                        ]),
+                  ),
+                ]),
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    margin: const EdgeInsets.only(
+                      top: 10,
+                      left: 10,
+                      right: 10,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text(
+                          'New Collections',
+                          style:
+                              TextStyle(color: Color(0xfffe5c45), fontSize: 20),
+                        ),
+                        const SizedBox(
+                          width: 0,
+                        ),
+                        const Text(
+                          'Show All',
+                          style: TextStyle(color: Colors.grey, fontSize: 15),
+                        ),
+                        
+                      ],
+                    ),
+                  ),
+                  Container(
+                          child: SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                              children: [
+                                Container(
+                                  margin: EdgeInsets.all(8),
+                                  height: 200,
+                                  width: 200,
+                                  //color: flavorColor,
+                                  child: Text('item'),
+                                ),
+                                Container(
+                                  margin: EdgeInsets.all(8),
+                                  height: 200,
+                                  width: 200,
+                                  // color: flavorColor,
+                                  child: Text('item'),
+                                ),
+                                Container(
+                                  margin: EdgeInsets.all(8),
+                                  height: 200,
+                                  width: 200,
+                                  //color: flavorColor,
+                                  child: Text('item'),
+                                ),
+                                Container(
+                                  margin: EdgeInsets.all(8),
+                                  height: 200,
+                                  width: 200,
+                                  //color: flavorColor,
+                                  child: Text('item'),
+                                ),
+                                Container(
+                                  margin: const EdgeInsets.all(8),
+                                  height: 200,
+                                  width: 200,
+                                  //color: flavorColor,
+                                  child: const Text('item'),
+                                ),
+                              ],
                             ),
-                            labelColor: Color(0xfffe5c45),
-                            isScrollable: true,
-                            unselectedLabelColor: Color(0xffe6e5ee),
-                            tabs: [
-                              Tab(text: 'T-Shirts'),
-                              Tab(text: 'Jeans'),
-                              Tab(text: 'Blazers'),
-                              Tab(text: 'Sneakers'),
-                            ]),
-                      ),
-                    ],
-                  ),
-                  ),
-                  // Container(
-                  //   child: ,
-                  // )
+                          ),
+                        ),
+                ],
+              )
             ],
           ),
         ),
