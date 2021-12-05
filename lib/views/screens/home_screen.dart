@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../style/color.dart';
-//import '../pages/home_page.dart';
+import '../components/products.dart';
 import 'drawer_page.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -12,6 +12,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  TextEditingController searchController = TextEditingController();
   final List pageList = [
     //const HomePage(),
     // ProfilePage(),
@@ -20,6 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
     // OurTeam(),
     // AboutUs(),
   ];
+  String searchData = '';
 
   int selectedIndex = 0;
   @override
@@ -27,63 +29,45 @@ class _HomeScreenState extends State<HomeScreen> {
     //Size size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: KColor.K_background,
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(50.0),
-        // ignore: sort_child_properties_last
-        child: SafeArea(
-          child: Container(
-            width: double.infinity,
-            // height: 100,
-            margin: const EdgeInsets.only(left: 10, right: 10),
-            child: AppBar(
-              shape: const RoundedRectangleBorder(
-                  // borderRadius: BorderRadius.only(
-                  //     topLeft: Radius.circular(4),
-                  //     topRight: Radius.circular(4),
-                  //     bottomLeft: Radius.circular(5),
-                  //     bottomRight: Radius.circular(5)),
-                  ),
-              elevation: 0,
-              backgroundColor: KColor.K_app,
-              title: Container(
-                margin: const EdgeInsets.only(top: 0),
-                child: Column(
-                  children: [
-                    Center(
-                      child: RichText(
-                        textAlign: TextAlign.center,
-                        text: const TextSpan(
-                          text: 'Zoba',
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: KColor.K_app,
+        title: Container(
+          margin: const EdgeInsets.only(top: 0),
+          child: Column(
+            children: [
+              Center(
+                child: RichText(
+                  textAlign: TextAlign.center,
+                  text: const TextSpan(
+                    text: 'Zoba',
+                    style: TextStyle(
+                        color: KColor.K_zoba,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold),
+                    children: <TextSpan>[
+                      TextSpan(
+                          text: '.',
                           style: TextStyle(
-                              color: KColor.K_zoba,
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold),
-                          children: <TextSpan>[
-                            TextSpan(
-                                text: '.',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    color: Color(0xfffe5c45),
-                                    fontSize: 25)),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xfffe5c45),
+                              fontSize: 25)),
+                    ],
+                  ),
                 ),
               ),
-              actions: [
-                Container(
-                  margin: const EdgeInsets.only(right: 10),
-                  child: const Icon(
-                    Icons.shopping_bag,
-                    size: 20,
-                  ),
-                ),
-              ],
-            ),
+            ],
           ),
         ),
+        actions: [
+          Container(
+            margin: const EdgeInsets.only(right: 10),
+            child: const Icon(
+              Icons.shopping_bag,
+              size: 20,
+            ),
+          ),
+        ],
       ),
       drawer: DrawerPage(
         func: (index) {
@@ -93,7 +77,6 @@ class _HomeScreenState extends State<HomeScreen> {
         },
       ),
       body: SingleChildScrollView(
-        physics: const BouncingScrollPhysics(),
         child: Container(
           margin: const EdgeInsets.only(top: 0),
           child: Column(
@@ -109,8 +92,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       border: Border.all(
                         color: KColor.K_app.withOpacity(0.50),
                       )),
-                  child: const TextField(
-                    decoration: InputDecoration(
+                  child: TextField(
+                    controller: searchController,
+                    decoration: const InputDecoration(
                       border: InputBorder.none,
                       prefixIcon: Icon(Icons.search, color: Colors.grey),
                       hintText: 'Search here...',
@@ -141,7 +125,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             'SALE 30%',
                             textAlign: TextAlign.left,
                             style: TextStyle(
-                              color: Color(0xfffe5c45),
+                              color: KColor.K_sale,
                               fontSize: 20,
                             ),
                           ),
@@ -161,7 +145,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           const Text(
                             'Shop Now',
                             style: TextStyle(
-                              color: Color(0xfffe5c45),
+                              color: KColor.K_sale,
                               fontSize: 16,
                             ),
                           ),
@@ -178,24 +162,27 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               DefaultTabController(
                 length: 5,
-                child: Column(children: [
-                  Container(
-                    child: const TabBar(
-                        labelStyle: TextStyle(
-                            fontWeight: FontWeight.w700, fontSize: 15),
-                        labelColor: Color(0xfffe5c45),
-                        isScrollable: true,
-                        indicatorColor: Colors.transparent,
-                        unselectedLabelColor: Color(0xffe6e5ee),
-                        tabs: [
-                          Tab(text: 'T-Shirts'),
-                          Tab(text: 'Jeans'),
-                          Tab(text: 'Blazers'),
-                          Tab(text: 'Sneakers'),
-                          Tab(text: 'Jeans'),
-                        ]),
-                  ),
-                ]),
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        margin: const EdgeInsets.only(top: 0),
+                        child: const TabBar(
+                            labelStyle: TextStyle(
+                                fontWeight: FontWeight.w700, fontSize: 15),
+                            labelColor: KColor.K_sale,
+                            isScrollable: true,
+                            indicatorColor: Colors.transparent,
+                            unselectedLabelColor: Color(0xffe6e5ee),
+                            tabs: [
+                              Tab(text: 'T-Shirts'),
+                              Tab(text: 'Jeans'),
+                              Tab(text: 'Blazers'),
+                              Tab(text: 'Sneakers'),
+                              Tab(text: 'Jeans'),
+                            ]),
+                      ),
+                    ]),
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -211,66 +198,52 @@ class _HomeScreenState extends State<HomeScreen> {
                       children: [
                         const Text(
                           'New Collections',
-                          style:
-                              TextStyle(color: Color(0xfffe5c45), fontSize: 20),
+                          style: TextStyle(color: KColor.K_sale, fontSize: 20),
                         ),
                         const SizedBox(
                           width: 0,
                         ),
-                        const Text(
-                          'Show All',
-                          style: TextStyle(color: Colors.grey, fontSize: 15),
-                        ),
-                        
+                        TextButton(
+                            onPressed: () {},
+                            child: const Text('Show All',
+                                style: TextStyle(
+                                    color: Colors.grey, fontSize: 15)))
                       ],
                     ),
                   ),
-                  Container(
-                          child: SingleChildScrollView(
-                            scrollDirection: Axis.horizontal,
-                            child: Row(
-                              children: [
-                                Container(
-                                  margin: EdgeInsets.all(8),
-                                  height: 200,
-                                  width: 200,
-                                  //color: flavorColor,
-                                  child: Text('item'),
-                                ),
-                                Container(
-                                  margin: EdgeInsets.all(8),
-                                  height: 200,
-                                  width: 200,
-                                  // color: flavorColor,
-                                  child: Text('item'),
-                                ),
-                                Container(
-                                  margin: EdgeInsets.all(8),
-                                  height: 200,
-                                  width: 200,
-                                  //color: flavorColor,
-                                  child: Text('item'),
-                                ),
-                                Container(
-                                  margin: EdgeInsets.all(8),
-                                  height: 200,
-                                  width: 200,
-                                  //color: flavorColor,
-                                  child: Text('item'),
-                                ),
-                                Container(
-                                  margin: const EdgeInsets.all(8),
-                                  height: 200,
-                                  width: 200,
-                                  //color: flavorColor,
-                                  child: const Text('item'),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
+                   const Products(),
                 ],
-              )
+              ),
+               Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    margin: const EdgeInsets.only(
+                      top: 10,
+                      left: 10,
+                      right: 10,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text(
+                          'Best Selling',
+                          style: TextStyle(color: KColor.K_sale, fontSize: 20),
+                        ),
+                        const SizedBox(
+                          width: 0,
+                        ),
+                        TextButton(
+                            onPressed: () {},
+                            child: const Text('Show All',
+                                style: TextStyle(
+                                    color: Colors.grey, fontSize: 15)))
+                      ],
+                    ),
+                  ),
+                   const Products(),
+                ],
+              ),
             ],
           ),
         ),

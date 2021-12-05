@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart';
 
-class KAsset{
-  //static final Asset K_drawer = Asset(assets/images/men.jpg);
+class AssetPath{
+  static const men = 'assets/images/men1.png';
+  static const girl = 'assets/images/girl3.png';
+  static const bag = 'assets/images/bag.png';
 }
