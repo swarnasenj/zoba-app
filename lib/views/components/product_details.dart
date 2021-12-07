@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:zoba_app/models/products_model.dart';
 import '../../constant/app_constant.dart';
 import '../../constant/asset_path.dart';
 import '../../constant/rating.dart';
 import '../../style/color.dart';
 
 class ProductDetails extends StatefulWidget {
-  final productItem;
-  ProductDetails(this.productItem);
+  final Products data;
+  ProductDetails({required this.data});
 
   @override
   _ProductDetailsState createState() => _ProductDetailsState();
@@ -23,12 +24,18 @@ class _ProductDetailsState extends State<ProductDetails> {
   int ind = -1;
   bool isWishList = false;
 
-  @override
+  // @override
   initState() {
     super.initState();
-    for (var i = 0; i < AppConstant.wishList.length; i++) {
-      if (widget.productItem["id"] == AppConstant.wishList[i]["id"]) {
+    if (AppConstant.wishList.isNotEmpty) {
+      final _wishList =
+          AppConstant.wishList.where((e) => e.id == widget.data.id).toList();
+
+      if (_wishList.isNotEmpty) {
         isWishList = true;
+        print(_wishList.first);
+      } else {
+        isWishList = false;
       }
     }
   }
@@ -297,7 +304,6 @@ class _ProductDetailsState extends State<ProductDetails> {
                           color: Colors.white,
                         ),
                       ),
-                      
                     ],
                   ),
                 ),

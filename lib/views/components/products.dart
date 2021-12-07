@@ -23,32 +23,31 @@ class _ProductsState extends State<Products> {
             children: [
               Row(
                 children:
-                    List.generate(AppConstant.productList.length, (int index) {
+                    List.generate(AppConstant.productsList.length, (int index) {
+                  final _wishList = AppConstant.wishList
+                      .where((e) => e.id.toString().contains(
+                          AppConstant.productsList[index].id.toString()))
+                      .toList();
+
+                  final _data = AppConstant.productsList[index];
                   return GestureDetector(
                     onTap: () {
+                      print('pressed');
                       Navigator.push(
                           context,
                           MaterialPageRoute(
                               builder: (context) => ProductDetails(
-                                  AppConstant.productList[index])));
+                                    data: AppConstant.productsList[index],
+                                  )));
                     },
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => ProductDetails(context)));
-                      },
+                    child: Container(
+                      margin: EdgeInsets.all(5),
                       child: Column(
+                        mainAxisSize: MainAxisSize.min,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           GestureDetector(
-                            onTap: () {
-                              AppConstant.wishList
-                                  .add(AppConstant.productList[index]);
-
-                              print(AppConstant.wishList);
-                            },
+                            onTap: () {},
                             child: Stack(
                               children: [
                                 Container(
@@ -67,10 +66,23 @@ class _ProductsState extends State<Products> {
                                     ),
                                     alignment: Alignment.topRight,
                                     child: IconButton(
-                                        onPressed: () {},
-                                        icon: const Icon(
+                                        onPressed: () {
+                                          print('pressed');
+                                          if (_wishList.isEmpty) {
+                                            AppConstant.wishList.add(_data);
+                                            print('added');
+                                          } else {
+                                            AppConstant.wishList.remove(_data);
+                                            print('removed');
+                                          }
+                                          setState(() {});
+                                        },
+                                        icon: Icon(
                                           Icons.favorite_outline,
                                           size: 14,
+                                          color: _wishList.isEmpty
+                                              ? Colors.black
+                                              : Colors.red,
                                         ))),
                               ],
                             ),
@@ -105,6 +117,88 @@ class _ProductsState extends State<Products> {
                       ),
                     ),
                   );
+
+                  // return GestureDetector(
+                  //   onTap: () {
+                  //     Navigator.push(
+                  //         context,
+                  //         MaterialPageRoute(
+                  //             builder: (context) => ProductDetails(
+                  //                 AppConstant.productList[index])));
+                  //   },
+                  //   child: InkWell(
+                  //     onTap: () {
+                  //       Navigator.push(
+                  //           context,
+                  //           MaterialPageRoute(
+                  //               builder: (context) => ProductDetails(context)));
+                  //     },
+                  //     child: Column(
+                  //       crossAxisAlignment: CrossAxisAlignment.start,
+                  //       children: [
+                  //         GestureDetector(
+                  //           onTap: () {
+                  //             AppConstant.wishList
+                  //                 .add(AppConstant.productList[index]);
+
+                  //             print(AppConstant.wishList);
+                  //           },
+                  //           child: Stack(
+                  //             children: [
+                  //               Container(
+                  //                 decoration: BoxDecoration(
+                  //                     color: KColor.K_app,
+                  //                     borderRadius: BorderRadius.circular(3)),
+                  //                 height: 100,
+                  //                 width: 100,
+                  //                 child: Image.asset(
+                  //                   "${AppConstant.productList[index]["image"]}",
+                  //                 ),
+                  //               ),
+                  //               Container(
+                  //                   padding: const EdgeInsets.only(
+                  //                     left: 70,
+                  //                   ),
+                  //                   alignment: Alignment.topRight,
+                  //                   child: IconButton(
+                  //                       onPressed: () {},
+                  //                       icon: const Icon(
+                  //                         Icons.favorite_outline,
+                  //                         size: 14,
+                  //                       ))),
+                  //             ],
+                  //           ),
+                  //         ),
+                  //         Container(
+                  //           margin: const EdgeInsets.only(left: 5),
+                  //           child: Column(
+                  //             crossAxisAlignment: CrossAxisAlignment.start,
+                  //             children: [
+                  //               Text(
+                  //                 "${AppConstant.productList[index]["name"]}",
+                  //                 style: const TextStyle(
+                  //                     color: KColor.K_text, fontSize: 14),
+                  //               ),
+                  //               Text(
+                  //                 "${AppConstant.productList[index]["category"]}",
+                  //                 style: const TextStyle(
+                  //                     color: KColor.K_text, fontSize: 14),
+                  //               ),
+                  //               const SizedBox(
+                  //                 height: 10,
+                  //               ),
+                  //               Text(
+                  //                 "\$${AppConstant.productList[index]["price"]}",
+                  //                 style: const TextStyle(
+                  //                     color: KColor.K_sale, fontSize: 13),
+                  //               ),
+                  //             ],
+                  //           ),
+                  //         )
+                  //       ],
+                  //     ),
+                  //   ),
+                  // );
                 }),
               ),
             ],
