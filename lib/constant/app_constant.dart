@@ -18,7 +18,9 @@ class AppConstant {
   ];
 
   // TODO
-  // ai list take uporer 3 number line er list a data add kore diben. ai list er ar dorkar nai.
+  // ai list take uporer 3 number line er list a data add kore diben.
+  // upore 2 ta data add kora ase. oirokom kore.
+  //ai list er ar dorkar nai.
   static List productList = [
     {
       "id": 1,
