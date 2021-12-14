@@ -41,15 +41,15 @@ class _Rating extends State<Rating> {
         Row(
           children: stars,
         ),
-        MaterialButton(
+        // MaterialButton(
          
-          onPressed: () {
-            setState(() {
-              _currentRating = 0;
-            });
-            this.widget.onRatingSelected(_currentRating);
-          },
-        )
+        //   onPressed: () {
+        //     setState(() {
+        //       _currentRating = 0;
+        //     });
+        //     this.widget.onRatingSelected(_currentRating);
+        //   },
+        // )
       ],
     );
   }

@@ -15,10 +15,22 @@ class AppConstant {
         image: 'assets/images/girl3.png',
         category: 'Bag',
         price: 54.20),
+        Products(
+        id: 3,
+        name: 'Girl Leather',
+        image: 'assets/images/girl3.png',
+        category: 'Bag',
+        price: 54.20),
+        Products(
+        id: 4,
+        name: 'Girl Leather',
+        image: 'assets/images/girl3.png',
+        category: 'Bag',
+        price: 54.20),
   ];
 
   // TODO
-  // ai list take uporer 3 number line er list a data add kore diben.
+  // ai list take uporer 3 number line er list a data add kore dibo.
   // upore 2 ta data add kora ase. oirokom kore.
   //ai list er ar dorkar nai.
   static List productList = [

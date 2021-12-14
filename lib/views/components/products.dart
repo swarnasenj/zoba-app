@@ -41,51 +41,49 @@ class _ProductsState extends State<Products> {
                                   )));
                     },
                     child: Container(
+                      color: Colors.transparent,
                       margin: EdgeInsets.all(5),
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          GestureDetector(
-                            onTap: () {},
-                            child: Stack(
-                              children: [
-                                Container(
-                                  decoration: BoxDecoration(
-                                      color: KColor.K_app,
-                                      borderRadius: BorderRadius.circular(3)),
-                                  height: 100,
-                                  width: 100,
-                                  child: Image.asset(
-                                    "${AppConstant.productList[index]["image"]}",
-                                  ),
+                          Stack(
+                            children: [
+                              Container(
+                                decoration: BoxDecoration(
+                                    color: KColor.K_app,
+                                    borderRadius: BorderRadius.circular(3)),
+                                height: 100,
+                                width: 100,
+                                child: Image.asset(
+                                  "${AppConstant.productList[index]["image"]}",
                                 ),
-                                Container(
-                                    padding: const EdgeInsets.only(
-                                      left: 70,
-                                    ),
-                                    alignment: Alignment.topRight,
-                                    child: IconButton(
-                                        onPressed: () {
-                                          print('pressed');
-                                          if (_wishList.isEmpty) {
-                                            AppConstant.wishList.add(_data);
-                                            print('added');
-                                          } else {
-                                            AppConstant.wishList.remove(_data);
-                                            print('removed');
-                                          }
-                                          setState(() {});
-                                        },
-                                        icon: Icon(
-                                          Icons.favorite_outline,
-                                          size: 14,
-                                          color: _wishList.isEmpty
-                                              ? Colors.black
-                                              : Colors.red,
-                                        ))),
-                              ],
-                            ),
+                              ),
+                              Container(
+                                  padding: const EdgeInsets.only(
+                                    left: 65,
+                                  ),
+                                  alignment: Alignment.topRight,
+                                  child: IconButton(
+                                      onPressed: () {
+                                        print('pressed');
+                                        if (_wishList.isEmpty) {
+                                          AppConstant.wishList.add(_data);
+                                          print('added');
+                                        } else {
+                                          AppConstant.wishList.remove(_data);
+                                          print('removed');
+                                        }
+                                        setState(() {});
+                                      },
+                                      icon: Icon(
+                                        Icons.favorite_outline,
+                                        size: 14,
+                                        color: _wishList.isEmpty
+                                            ? Colors.black
+                                            : Colors.red,
+                                      ))),
+                            ],
                           ),
                           Container(
                             margin: const EdgeInsets.only(left: 5),

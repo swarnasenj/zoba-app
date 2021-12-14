@@ -77,14 +77,14 @@ class _HomeScreenState extends State<HomeScreen> {
         },
       ),
       body: SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
         child: Container(
           margin: const EdgeInsets.only(top: 0),
           child: Column(
             children: [
               Container(
                 height: 70,
-                color: KColor.K_app,
-                margin: const EdgeInsets.only(left: 10, right: 10),
+                color: KColor.K_app,               
                 padding: const EdgeInsets.only(left: 20, right: 20),
                 child: Container(
                   decoration: BoxDecoration(
@@ -106,7 +106,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               Container(
-                margin: const EdgeInsets.only(left: 15, right: 15, top: 10),
+                margin: const EdgeInsets.only(left: 15, right: 15, top: 15),
                 height: MediaQuery.of(context).size.height * .2,
                 width: double.infinity,
                 decoration: BoxDecoration(
@@ -114,6 +114,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   borderRadius: BorderRadius.circular(4),
                 ),
                 child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Container(
                       padding:
@@ -152,10 +153,12 @@ class _HomeScreenState extends State<HomeScreen> {
                         ],
                       ),
                     ),
-                    Image.asset(
-                      'assets/images/bag.png',
-                      height: 100,
-                      width: 100,
+                    Expanded(
+                      child: Image.asset(
+                        'assets/images/bag.png',
+                        height: 100,
+                        width: 100,
+                      ),
                     ),
                   ],
                 ),
